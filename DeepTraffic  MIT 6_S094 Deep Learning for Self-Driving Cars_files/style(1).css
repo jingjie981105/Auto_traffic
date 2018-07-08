@@ -1,0 +1,267 @@
+@import url( https://fonts.googleapis.com/css?family=Raleway );
+@import url( https://fonts.googleapis.com/css?family=Ubuntu );
+@import url( https://fonts.googleapis.com/css?family=Open+Sans:300,400 );
+body {
+	color: rgb(0, 0, 0);
+}
+div#main {
+	margin: auto; color: rgb(0, 0, 0); font-size: 16px; max-width: 700px;
+}
+.site-header h1.site-title {
+	text-align: center; color: rgb(187, 187, 187); font-family: "Ubuntu", sans-serif; font-size: 34px; font-weight: 500;
+}
+.site-header h1.site-title a {
+	text-align: center; color: rgb(187, 187, 187); font-family: "Ubuntu", sans-serif; font-size: 34px; font-weight: 500;
+}
+body.page-id-2 .site-header h1.site-title {
+	color: rgb(0, 0, 0);
+}
+body.page-id-2 .site-header h1.site-title a {
+	color: rgb(0, 0, 0);
+}
+.site-header h1.site-title:hover {
+	color: rgb(158, 196, 255);
+}
+.site-header h1.site-title a:hover {
+	color: rgb(158, 196, 255);
+}
+h1#lex-page-title {
+	text-align: center; font-family: "Ubuntu", sans-serif; font-size: 34px; font-weight: normal;
+}
+footer[role=contentinfo] {
+	display: none;
+}
+.page .entry-title {
+	display: none;
+}
+.site-content {
+	padding-top: 0px; margin-top: 0px;
+}
+.site-content article {
+	border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: none;
+}
+img.size-full {
+	box-shadow: none;
+}
+img.size-large {
+	box-shadow: none;
+}
+img.header-image {
+	box-shadow: none;
+}
+img.wp-post-image {
+	box-shadow: none;
+}
+.entry-content img {
+	box-shadow: none;
+}
+.wrapper {
+	padding-top: 0px; margin-top: 0px;
+}
+.site-header {
+	padding-bottom: 0px;
+}
+.entry-content a:visited {
+	color: rgb(33, 117, 155);
+}
+.comment-content a:visited {
+	color: rgb(33, 117, 155);
+}
+.entry-content a:hover {
+	color: rgb(0, 182, 255); text-decoration: none;
+}
+.comment-content a:hover {
+	color: rgb(0, 182, 255); text-decoration: none;
+}
+.clear {
+	clear: both;
+}
+.page-id-353 .site-header {
+	display: none;
+}
+.page-id-1138 .site-header {
+	display: none;
+}
+#site-navigation {
+	margin-top: 18px;
+}
+.nav-menu li {
+	color: rgb(136, 136, 136); text-transform: none; font-size: 16px;
+}
+.nav-menu li a {
+	color: rgb(136, 136, 136); text-transform: none; font-size: 16px;
+}
+.main-navigation li#menu-item-78 {
+	margin-right: 20px; float: right;
+}
+.main-navigation li#menu-item-112 {
+	margin-right: 20px; float: right;
+}
+.main-navigation li#menu-item-111 {
+	margin-right: 20px; float: right;
+}
+.main-navigation li#menu-item-325 {
+	margin-right: 20px; float: right;
+}
+.main-navigation li#menu-item-339 {
+	margin-right: 20px; float: right;
+}
+.main-navigation li#menu-item-78 a {
+	padding-top: 8px; font-size: 12px; float: right;
+}
+.main-navigation li#menu-item-112 a {
+	padding-top: 8px; font-size: 12px; float: right;
+}
+.main-navigation li#menu-item-111 a {
+	padding-top: 8px; font-size: 12px; float: right;
+}
+.main-navigation li#menu-item-325 a {
+	padding-top: 8px; font-size: 12px; float: right;
+}
+.main-navigation li#menu-item-339 a {
+	padding-top: 8px; font-size: 12px; float: right;
+}
+.main-navigation li#menu-item-78 {
+	margin-right: 0px;
+}
+.staff {
+	padding-top: 10px; padding-bottom: 10px; float: left;
+}
+.staff-thumb {
+	margin: 0px 30px; text-align: center;
+}
+.staff-lex .staff-thumb {
+	text-align: left;
+}
+.staff-name {
+	text-align: center;
+}
+.staff-title {
+	text-align: center;
+}
+.guest-list-2017 {
+	
+}
+.guest-list-2017 .guest {
+	width: 100%; padding-bottom: 20px; clear: left; float: left; display: block;
+}
+.guest-list-2017 .guest-thumb {
+	width: 100px; padding-right: 10px; float: left;
+}
+.guest-list-2017 .guest-name {
+	text-align: left;
+}
+.guest-list-2017 .guest-title {
+	color: rgb(85, 85, 85); font-size: 12px;
+}
+.guest-list-2017 .guest-topic {
+	font-weight: bold;
+}
+.guest-list-2018 {
+	padding-top: 20px;
+}
+.guest-list-2018 .guest {
+	width: 100%; padding-bottom: 20px; clear: left; float: left; display: block;
+}
+.guest-list-2018 .guest-logistics span {
+	padding-right: 15px;
+}
+.guest-list-2018 .guest-logistics span.date-time {
+	color: rgb(188, 0, 0);
+}
+.guest-list-2018 .guest-logistics span.warning {
+	color: rgb(255, 0, 0); font-size: 12px;
+}
+.guest-list-2018 .guest-thumb {
+	width: 100px; padding-right: 10px; float: left;
+}
+.guest-list-2018 .guest-thumb-youtube {
+	padding-right: 10px; float: left;
+}
+.guest-list-2018 .materials span.soon {
+	color: rgb(102, 102, 102); padding-left: 10px; font-size: 12px; font-style: italic;
+}
+.guest-list-2018 .guest-name {
+	text-align: left;
+}
+.guest-list-2018 .guest-title {
+	color: rgb(85, 85, 85); font-size: 12px;
+}
+.guest-list-2018 .guest-topic {
+	font-weight: bold;
+}
+.guest-list-2018 .guest-pretopic {
+	color: rgb(0, 186, 39); font-size: 14px; font-style: italic; font-weight: normal;
+}
+ul#topics li span {
+	font-weight: bold;
+}
+ul#topics li span.soon {
+	color: rgb(198, 0, 0); font-weight: normal;
+}
+span.soon {
+	color: rgb(198, 0, 0); font-weight: normal;
+}
+img.schedule {
+	box-shadow: none;
+}
+.entry-content h3 {
+	font-family: "Raleway", sans-serif; font-size: 26px; font-weight: normal; margin-bottom: 0px;
+}
+.entry-content p {
+	margin: 10px 0px;
+}
+.entry-content ul {
+	margin: 10px 0px;
+}
+.entry-content ol {
+	margin: 10px 0px;
+}
+div.shirt {
+	float: right;
+}
+.type-post .entry-header .entry-title {
+	font-size: 28px; margin-top: 20px;
+}
+footer.entry-meta {
+	display: none;
+}
+nav.nav-single {
+	display: none;
+}
+#wppb-register-user li.wppb-send-credentials-checkbox {
+	display: none;
+}
+.nf-field-label label {
+	color: rgb(0, 61, 114); font-size: 14px;
+}
+.label-above .nf-field-label {
+	margin-bottom: 0px !important;
+}
+.nf-field-description {
+	color: rgb(0, 0, 0); font-size: 13px !important; font-style: italic !important;
+}
+.nf-field-element {
+	color: rgb(0, 0, 0); font-size: 13px;
+}
+.entry-content blockquote {
+	background: rgb(249, 249, 249); padding: 0px 20px; font-family: "Open Sans", sans-serif; font-size: 1.3em; font-style: normal; font-weight: 300; border-left-color: rgb(204, 204, 204); border-left-width: 10px; border-left-style: solid;
+}
+.entry-content blockquote .quote-cite {
+	color: rgb(153, 0, 0);
+}
+.entry-content blockquote p {
+	padding: 10px 0px;
+}
+.error-label {
+	color: rgb(217, 7, 0); font-weight: bold;
+}
+@media all and (min-width:960px)
+{
+.big-display {
+	width: 960px; margin-right: -130px; margin-left: -130px; min-width: 960px;
+}
+.size-x-large {
+	width: 960px; margin-right: -130px; margin-left: -130px; min-width: 960px;
+}
+}

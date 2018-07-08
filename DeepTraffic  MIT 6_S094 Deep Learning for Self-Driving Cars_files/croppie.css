@@ -1,0 +1,108 @@
+.croppie-container {
+	width: 100%; height: 100%;
+}
+.croppie-container .cr-image {
+	transform-origin: 0% 0%; left: 0px; top: 0px; position: absolute; z-index: -1; max-height: none; max-width: none;
+}
+.croppie-container .cr-boundary {
+	margin: 0px auto; width: 100%; height: 100%; overflow: hidden; position: relative; z-index: 1;
+}
+.croppie-container .cr-viewport {
+	margin: auto; border: 2px solid rgb(255, 255, 255); border-image: none; left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; z-index: 0; box-shadow: 0px 0px 2000px 2000px rgba(0,0,0,0.5);
+}
+.croppie-container .cr-resizer {
+	margin: auto; border: 2px solid rgb(255, 255, 255); border-image: none; left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; z-index: 0; box-shadow: 0px 0px 2000px 2000px rgba(0,0,0,0.5);
+}
+.croppie-container .cr-resizer {
+	z-index: 2; pointer-events: none; box-shadow: none;
+}
+.croppie-container .cr-resizer-vertical {
+	position: absolute; pointer-events: all;
+}
+.croppie-container .cr-resizer-horisontal {
+	position: absolute; pointer-events: all;
+}
+.croppie-container .cr-resizer-vertical::after {
+	background: rgb(255, 255, 255); border: 1px solid black; border-image: none; width: 10px; height: 10px; display: block; position: absolute; content: ""; box-sizing: border-box;
+}
+.croppie-container .cr-resizer-horisontal::after {
+	background: rgb(255, 255, 255); border: 1px solid black; border-image: none; width: 10px; height: 10px; display: block; position: absolute; content: ""; box-sizing: border-box;
+}
+.croppie-container .cr-resizer-vertical {
+	width: 100%; height: 10px; bottom: -5px; cursor: row-resize;
+}
+.croppie-container .cr-resizer-vertical::after {
+	left: 50%; margin-left: -5px;
+}
+.croppie-container .cr-resizer-horisontal {
+	width: 10px; height: 100%; right: -5px; cursor: col-resize;
+}
+.croppie-container .cr-resizer-horisontal::after {
+	top: 50%; margin-top: -5px;
+}
+.croppie-container .cr-original-image {
+	display: none;
+}
+.croppie-container .cr-vp-circle {
+	border-radius: 50%;
+}
+.croppie-container .cr-overlay {
+	position: absolute; z-index: 1; cursor: move; touch-action: none;
+}
+.croppie-container .cr-slider-wrap {
+	margin: 15px auto; width: 75%; text-align: center;
+}
+.croppie-result {
+	overflow: hidden; position: relative;
+}
+.croppie-result img {
+	position: absolute;
+}
+.croppie-container .cr-image {
+	transform: translateZ(0px); -webkit-transform: translateZ(0); -moz-transform: translateZ(0);
+}
+.croppie-container .cr-overlay {
+	transform: translateZ(0px); -webkit-transform: translateZ(0); -moz-transform: translateZ(0);
+}
+.croppie-container .cr-viewport {
+	transform: translateZ(0px); -webkit-transform: translateZ(0); -moz-transform: translateZ(0);
+}
+.cr-slider {
+	width: 300px; padding-top: 8px; padding-bottom: 8px; max-width: 100%; background-color: transparent; -webkit-appearance: none;
+}
+.cr-slider:focus {
+	
+}
+.cr-slider::-ms-track {
+	background: none; border-width: 6px 0px; border-color: transparent; width: 100%; height: 5px; color: transparent;
+}
+.cr-slider::-ms-fill-lower {
+	background: rgba(0, 0, 0, 0.5); border-radius: 10px;
+}
+.cr-slider::-ms-fill-upper {
+	background: rgba(0, 0, 0, 0.5); border-radius: 10px;
+}
+.cr-slider::-ms-thumb {
+	background: rgb(221, 221, 221); border-radius: 50%; border: currentColor; border-image: none; width: 16px; height: 16px; margin-top: 1px;
+}
+.cr-slider:focus::-ms-fill-lower {
+	background: rgba(0, 0, 0, 0.5);
+}
+.cr-slider:focus::-ms-fill-upper {
+	background: rgba(0, 0, 0, 0.5);
+}
+.cr-rotate-controls {
+	left: 5px; bottom: 5px; position: absolute; z-index: 1;
+}
+.cr-rotate-controls button {
+	background: none; border: 0px currentColor; border-image: none;
+}
+.cr-rotate-controls i::before {
+	font-size: 22px; font-style: normal; font-weight: 900; display: inline-block;
+}
+.cr-rotate-l i::before {
+	content: "↺";
+}
+.cr-rotate-r i::before {
+	content: "↻";
+}
