@@ -2,7 +2,7 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
 (function(global) {
   "use strict";
 
-  // Random number utilities
+
   var return_v = false;
   var v_val = 0.0;
   var gaussRandom = function() {
