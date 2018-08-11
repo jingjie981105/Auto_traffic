@@ -10,6 +10,7 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
       return_v = false;
       return v_val; 
     }
+    //
     var u = 2*Math.random()-1;
     var v = 2*Math.random()-1;
     var r = u*u + v*v;
