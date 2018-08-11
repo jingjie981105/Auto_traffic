@@ -635,11 +635,8 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
 (function(global) {
   "use strict";
   var Vol = global.Vol; // convenience
-  
   var PoolLayer = function(opt) {
-
     var opt = opt || {};
-
     // required
     this.sx = opt.sx; // filter size
     this.in_depth = opt.in_depth;

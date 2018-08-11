@@ -2,7 +2,6 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
 
 (function(global) {
   "use strict";
-  
   // An agent is in state0 and does action0
   // environment then assigns reward0 and provides new state, state1
   // Experience nodes store all this information, which is used in the
@@ -48,7 +47,7 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
         console.log('TROUBLE. random_action_distribution should be same length as num_actions.');
       }
       var a = this.random_action_distribution;
-      var s = 0.0; for(var k=0;k<a.length;k++) { s+= a[k]; }
+      var s = 0.0; for(var k=0;k<a.length;k++) { s+= a[k]; }//累加随机操作分布，且这个值要是1
       if(Math.abs(s-1.0)>0.0001) { console.log('TROUBLE. random_action_distribution should sum to 1!'); }
     } else {
       this.random_action_distribution = [];
@@ -74,7 +73,7 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
       // actions must check out. This is not very pretty Object Oriented programming but I can't see
       // a way out of it :(
       layer_defs = opt.layer_defs;
-      if(layer_defs.length < 2) { console.log('TROUBLE! must have at least 2 layers'); }
+      if(layer_defs.length < 2) { console.log('TROUBLE! must have at least 2 layers'); }//至少要有两层，第一层必须是输入层，最后一层必须是回归层
       if(layer_defs[0].type !== 'input') { console.log('TROUBLE! first layer must be input layer!'); }
       if(layer_defs[layer_defs.length-1].type !== 'regression') { console.log('TROUBLE! last layer must be input regression!'); }
       if(layer_defs[0].out_depth * layer_defs[0].out_sx * layer_defs[0].out_sy !== this.net_inputs) {
@@ -95,6 +94,7 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
       }
       layer_defs.push({type:'regression', num_neurons:num_actions}); // value function output
     }
+    //建立连接，将各层的变量聚合在一起，layer层统一为一个神经网络value_net
     this.value_net = new convnetjs.Net();
     this.value_net.makeLayers(layer_defs);
     
@@ -143,6 +143,7 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
         }
       }
     },
+      //得到预测动作
     policy: function(s) {
       // compute the value of doing any action in this state
       // and return the argmax action and its value
@@ -282,7 +283,7 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
       t += 'smooth-ish reward: ' + this.average_reward_window.get_average() + '<br />';
       desc.innerHTML = t;
       brainvis.appendChild(desc);
-      
+
       elt.appendChild(brainvis);
     }
   }
