@@ -24,8 +24,8 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
   var randn = function(mu, std){ return mu+gaussRandom()*std; }
 
   // Array utilities
-  var zeros = function(n) {
-    if(typeof(n)==='undefined' || isNaN(n)) { return []; }
+  var  zeros = function(n) {
+    if(typeof(n)==='undefined' || isNaN(n)) { return []; }//n未定义或者不是数字，返回空
     if(typeof ArrayBuffer === 'undefined') {
       // lacking browser support
       var arr = new Array(n);
@@ -570,6 +570,8 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
     },
     backward: function() {
       var V = this.in_act;
+
+
       V.dw = global.zeros(V.w.length); // zero out the gradient in input Vol
       
       // compute gradient wrt weights and data
