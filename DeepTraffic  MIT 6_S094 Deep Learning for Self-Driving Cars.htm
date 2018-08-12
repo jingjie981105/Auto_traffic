@@ -254,7 +254,10 @@ target="_blank">Leaderboard</A>      - <A href="https://selfdrivingcars.mit.edu/
 target="_blank">About DeepTraffic</A>       
 <P>Americans spend 8 billion hours stuck in traffic every year.<BR>Deep neural 
 networks can help!</P></DIV>
+
+    <!--编辑框对应的盒子，到时候需要注释掉的-->
 <DIV class="codeBox" id="container" style="border: 1px solid grey; border-image: none; vertical-align: top; display: inline-block;"></DIV>
+
 <DIV style="margin-top: 10px;"><BUTTON class="button-small" 
 onclick="run()">Apply Code/Reset Net</BUTTON>       <BUTTON class="button-small" 
 id="downloadCodeButton">Save Code/Net to File</BUTTON>       <A id="blobDownload" 
@@ -305,6 +308,8 @@ details here</A>): </P>
 <OL>
   <LI>Change parameters in the code box (<A href="https://selfdrivingcars.mit.edu/deeptraffic-about/">hints 
   here</A>).</LI>
+
+    <!--应用编辑框的按钮-->
   <LI>Click "Apply Code" white button.</LI>
   <LI>Click "Run Training" blue button.</LI>
   <LI>Click "Submit Model to Competition".</LI></OL>
@@ -320,8 +325,8 @@ details here</A>): </P>
 //<![CDATA[
 
 // a few things don't have var in front of them - they update already existing variables the game needs
-lanesSide = 0;
-patchesAhead = 1;
+lanesSide = 2;
+patchesAhead = 10;
 patchesBehind = 0;
 trainIterations = 10000;
 
@@ -350,7 +355,6 @@ layer_defs.push({
     num_neurons: num_actions
 });
 
-var temp;
 var tdtrainer_options = {
     learning_rate: 0.001,
     momentum: 0.0,
