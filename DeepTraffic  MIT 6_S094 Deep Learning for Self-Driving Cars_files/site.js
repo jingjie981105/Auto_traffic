@@ -15,7 +15,7 @@ require(['vs/editor/editor.main'], function () {
 
 run = function () {
     reward_graph = new cnnvis.Graph();
-    eval(editor.getValue());
+    //eval(editor.getValue());
     brain.learning = false;
     reset();
     if ((2 * lanesSide + 1) * (patchesAhead + patchesBehind) > 100) {
@@ -29,7 +29,8 @@ console.log(document.getElementById("sampleCode").innerHTML);
 brain.learning = false;
 
 function getData() {
-    var data = editor.getValue() + "\n/*###########*/\n";
+    var data = editor.getValue(0) + "\n/*###########*/\n";
+
     if (brain) {
         data += "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
     }
@@ -143,13 +144,16 @@ startEvalRun = function () {
 
 train = function () {
     brain.learning = false;
+    //显示任务进度
     var button = document.getElementById("trainButton");
     var progress = document.getElementById("trainProgress");
+
     button.setAttribute("style", "display: none;");
     progress.value = 0;
     progress.setAttribute("style", ";");
+
     if (window.Worker) {
-        var myWorker = new Worker("train_webworker.js");
+        var myWorker = new Worker("");//删掉了train_webworker.js
         myWorker.onmessage = function (e) {
             if (typeof e.data.percent != 'undefined') {
                 progress.value = e.data.percent;
