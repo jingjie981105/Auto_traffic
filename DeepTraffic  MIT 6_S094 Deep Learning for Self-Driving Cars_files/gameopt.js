@@ -1,7 +1,7 @@
 var ghostColor = "undefined" != typeof colorScheme && null != colorScheme ? colorScheme : "#FF0000",
-    e = !1,
-    k = !1,
-    m = !1;
+    selectFullMap = !1,
+    selectSafetySystem = !1,
+    selectLearningInput = !1;
 "undefined" == typeof headless && (headless = !1);
 var n = [0, 1, 2, 3, 4];
 
@@ -36,12 +36,12 @@ function x(a) {
     return d
 }
 function y() {
-    var a = nOtherAgents,
+    var otherAgents = nOtherAgents,
         b = z;
     console.log("cloning");
-    for (var d = [], c = 0; c < a; c++) d.push(x(brain));
+    for (var d = [], c = 0; c < otherAgents; c++) d.push(x(brain));
     for (c = 0; 20 > c; c++) b[c].f = !1;
-    for (c = 0; c < a; c++) b[c + 1].f = !0;
+    for (c = 0; c < otherAgents; c++) b[c + 1].f = !0;
     b[0].f = !0;
     return d
 }
@@ -277,17 +277,18 @@ headless || (document.addEventListener("keyup", function (a) {
 }), document.addEventListener("keydown", function (a) {
     R(a, !0)
 }));
-setDrawingStyle = function (a) {
-    m = k = e = !1;
-    switch (a.value) {
+setDrawingStyle = function (select) {
+
+    selectLearningInput=selectLearningInput=selectFullMap=!1;
+    switch (select.value) {
         case "cutout":
-            m = !0;
+            selectLearningInput = !0;
             break;
         case "safety":
-            k = !0;
+            selectSafetySystem = !0;
             break;
         case "full":
-            e = !0
+            selectFullMap = !0
     }
 };
 var S = Array(100),
@@ -323,12 +324,12 @@ function U() {
     M += E;
     M %= 20;
     for (c = 1; 7 > c; c++) for (b = 0; 36 > b; b++) a.fillRect(20 * c, 20 * b + 2 + M - 10, 2, 8);
-    if (e) for (c = 0; c < H.data.length; c++) for (b = 0; b < H.data[c].length; b++) d = H.get(c, b, 0),
+    if (selectFullMap) for (c = 0; c < H.data.length; c++) for (b = 0; b < H.data[c].length; b++) d = H.get(c, b, 0),
         a.fillStyle = 0 < d ? "rgba(250,120,0," + d / 100 + ")" : "rgba(0,120,250," + -d / 100 + ")",
         a.fillRect(20 * c + 2, 10 * b + 2, 18, 8);
-    if (k) for (c = 0; c < H.data.length; c++) for (b = 0; b < H.data[c].length; b++) d = I.get(c, b, 100),
+    if (selectSafetySystem) for (c = 0; c < H.data.length; c++) for (b = 0; b < H.data[c].length; b++) d = I.get(c, b, 100),
         0 == d ? (a.fillStyle = "rgba(250,120,0,0.5)", a.fillRect(20 * c + 2, 10 * b + 2, 18, 8)) : 2 == d && (a.fillStyle = "rgba(250,0,0,0.5)", a.fillRect(20 * c + 2, 10 * b + 2, 18, 8));
-    if (m) for (c = -lanesSide; c <= lanesSide; c++) for (b = -patchesAhead; b < patchesBehind; b++) d = K.get(c + lanesSide, b + patchesAhead, 0),
+    if (selectLearningInput) for (c = -lanesSide; c <= lanesSide; c++) for (b = -patchesAhead; b < patchesBehind; b++) d = K.get(c + lanesSide, b + patchesAhead, 0),
         a.fillStyle = 100 < d ? "rgba(120,250,120," + (d / 10 / 103 + .1) + ")" : 0 < d ? "rgba(250,120,0," + (d / 101 + .1) + ")" : "rgba(0,120,250," + (-d / 101 + .1) + ")",
         a.fillRect(20 * Math.floor(C + c) + 2, 10 * Math.floor(52.5 + b) + 2, 18, 8);
     a.save();
@@ -356,7 +357,7 @@ function V() {
         z[a].m(d)
     }
     z[0].l();
-    k && (I.reset(), z[0].v());
+    selectSafetySystem && (I.reset(), z[0].v());
     N += z[0].c * z[0].a;
     0 == G % 30 && (H.o(0, K), d = learn(K.s(), (N - 60) / 20), d = 0 <= d && d < n.length ? d : J, N = 0);
     z[0].m(d);

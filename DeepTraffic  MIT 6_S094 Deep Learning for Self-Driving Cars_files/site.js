@@ -25,7 +25,7 @@ run = function () {
     }
 
 }
-console.log(document.getElementById("sampleCode").innerHTML);
+console.log(document.getElementById("sampleCode").innerHTML);//运行到此处时，控制台显示页面上的信息
 brain.learning = false;
 
 function getData() {

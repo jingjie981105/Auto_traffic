@@ -258,14 +258,20 @@ style="font-size: 16pt;">0</SPAN> mph<BR> Cars Passed: <BR><SPAN id="passed"
 style="font-size: 16pt;">0</SPAN>     </DIV></DIV>
 <DIV class="gameCol"><CANVAS width="400" height="1400" id="canvas"></CANVAS>     
 <BR>
-<DIV style="text-align: center;"><SPAN>Road Overlay:</SPAN>       <BR><SELECT 
-class="button-small" onchange="setDrawingStyle(this)"><OPTION 
-  value="normal">None</OPTION>         <OPTION value="cutout">Learning 
-  Input</OPTION>         <OPTION value="safety">Safety System</OPTION>         
-  <OPTION value="full">Full Map</OPTION>       </SELECT><BR><SPAN>Simulation 
-Speed:</SPAN>       <BR><SELECT class="button-small" onchange="setFast(this.value == 'true')"><OPTION 
-  value="false">Normal</OPTION>         <OPTION value="true">Fast</OPTION>       
-</SELECT>     </DIV></DIV>
+<DIV style="text-align: center;"><SPAN>Road Overlay:</SPAN>       <BR>
+    <SELECT class="button-small" onchange="setDrawingStyle(this)">
+        <OPTION value="normal">None</OPTION>
+        <OPTION value="cutout">Learning Input</OPTION>
+        <OPTION value="safety">Safety System</OPTION>
+        <OPTION value="full">Full Map</OPTION>
+    </SELECT><BR>
+
+    <SPAN>SimulationSpeed:</SPAN>       <BR>
+    <SELECT class="button-small" onchange="setFast(this.value == 'true')">
+        <OPTION value="false">Normal</OPTION>
+        <OPTION value="true">Fast</OPTION>
+    </SELECT>
+</DIV></DIV>
 <DIV class="codeCol">
 <DIV class="headline">
 <H1 style="margin-bottom: 10px;">Deep<SPAN 
@@ -310,8 +316,10 @@ networks can help!</P></DIV>
   value="#0000F0">Navy</OPTION>               <OPTION id="fuchsia" value="#FF00FF">Fuchsia</OPTION> 
                 <OPTION id="purple" value="#800080">Purple</OPTION>             
 </SELECT>           </DIV>
-<DIV><BUTTON class="button-small" id="requestVisualization">Request 
-Visualization</BUTTON>           </DIV></DIV>
+<DIV>
+    <BUTTON class="button-small" id="requestVisualization">Request Visualization</BUTTON>
+</DIV>
+</DIV>
 <DIV class="example-links"><A href="https://selfdrivingcars.mit.edu/deeptraffic-custom-car-gallery/" 
 target="_blank">Custom Vehicle Images</A><A href="https://selfdrivingcars.mit.edu/deeptraffic-visualization/" 
 target="_blank">See Your Visualization</A></DIV></DIV>

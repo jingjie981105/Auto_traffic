@@ -1935,6 +1935,9 @@
                 d.isDefaultPrevented() && c.preventDefault()
             }
         },
+
+
+
             n.removeEvent = d.removeEventListener ?
                 function (a, b, c) {
                     a.removeEventListener && a.removeEventListener(b, c)
