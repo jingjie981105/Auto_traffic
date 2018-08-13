@@ -2,7 +2,7 @@ var ghostColor = "undefined" != typeof colorScheme && null != colorScheme ? colo
     selectFullMap = !1,
     selectSafetySystem = !1,
     selectLearningInput = !1;
-"undefined" == typeof headless && (headless = !1);
+"undefined" == typeof headless && (headless = !1);//head未定义或者是0
 var n = [0, 1, 2, 3, 4];
 
 function p(a) {
@@ -26,20 +26,21 @@ var r = 1,
 nOtherAgents = Math.min(otherAgents, 9);
 var w = !1;
 
-function x(a) {
-    var b;
-    var d = Array.isArray(a) ? [] : {};
-    for (b in a) {
-        var c = a[b];
-        d[b] = "object" === typeof c ? x(c) : c
+function exchangeBrainForm(tempBrains) {
+    var brain;
+    var container = Array.isArray(tempBrains) ? [] : {};//d根据tempBrains来定义是数组还是对象
+    for (brain in tempBrains) {
+        var tempData = tempBrains[brain];
+        container[brain] = "object" === typeof tempData ? exchangeBrainForm(tempData) : tempData//是对象就按照对象存，是其他方式就按照其他方式存
     }
-    return d
+    return container;
 }
+//var brains=y()
 function y() {
     var otherAgents = nOtherAgents,
-        b = z;
+        b = z;//b在此定义
     console.log("cloning");
-    for (var d = [], c = 0; c < otherAgents; c++) d.push(x(brain));
+    for (var d = [], c = 0; c < otherAgents; c++) d.push(exchangeBrainForm(brain));
     for (c = 0; 20 > c; c++) b[c].f = !1;
     for (c = 0; c < otherAgents; c++) b[c + 1].f = !0;
     b[0].f = !0;
@@ -54,15 +55,18 @@ function A(a) {
     return b.replace(/brain/g, "brains[" + (a - 1) + "]")
 }
 
-function Map(a, b, d) {
+function Map(width,length,defaultvalue) {//(a,b,d)
     this.data = [];
-    this.defaultValue = d;
-    for (var c = 0; c < a; c++) {
-        for (var f = [], l = 0; l < b; l++) f.push(d);
-        this.data.push(f)
+    this.defaultValue = defaultvalue;
+    for (var c = 0; c < width; c++) {
+        for (var f = [], l = 0; l < length; l++)
+            f.push(defaultvalue);
+        this.data.push(f)//data记录了汽车能观察到按列拆分的全局数据
     }
     this.reset = function () {
-        for (var a = 0; a < this.data.length; a++) for (var b = 0; b < this.data[a].length; b++) this.data[a][b] = this.defaultValue
+        for (var a = 0; a < this.data.length; a++)
+            for (var b = 0; b < this.data[a].length; b++)
+                this.data[a][b] = this.defaultValue
     };
     this.set = function (a, b, c) {
         a = Math.floor(a);
@@ -186,7 +190,9 @@ function D() {
         return Math.floor(a / this.h.length)
     }
 }
-for (var H = new Map(7, 70, 100), I = new Map(7, 70, 100), K = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, z = [], L = 0; 20 > L; L++) z.push(new D);
+for (var H = new Map(7, 70, 100), I = new Map(7, 70, 100), K = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, z = [], L = 0; 20 > L; L++)
+    z.push(new D);
+
 var brains = y(),
     G = 0,
     E = 1.5,
@@ -336,16 +342,22 @@ function U() {
     a.restore()
 }
 
+//V是汽车每次移动的处理函数
 function V() {
     !w && void 0 !== brain.forward_passes && brain.forward_passes > brain.temporal_window && (brains = y(), w = !0);
     H.reset();
+
+
     for (var a = 0; a < z.length; a++) z[a].move(0 != a, a),
         z[a].l();
+
+
     E = 1.5 - (z[0].y - 525);
     for (a = 0; a < z.length; a++) if (z[a].u(), a > nOtherAgents && q(v) > .99 + .004 * z[a].c) {
         var b = .5 < q(v) ? -1 : 1;
         z[a].i(b)
     }
+
     for (a = 1; a <= nOtherAgents; a++) {
         if (G % 30 == 3 * a) {
             var d = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0);
@@ -356,6 +368,7 @@ function V() {
         }
         z[a].m(d)
     }
+
     z[0].l();
     selectSafetySystem && (I.reset(), z[0].v());
     N += z[0].c * z[0].a;
@@ -363,7 +376,8 @@ function V() {
     z[0].m(d);
     G++;
     0 == G % 1E4 && console.log(G);
-    headless || (G % 30 && (a = z[0].w(), isNaN(a) || (document.getElementById("mph").innerText = Math.max(0, a))), U())
+    headless || (G % 30 && (a = z[0].w(), isNaN(a) || (document.getElementById("mph").innerText = Math.max(0, a)/*将当前车速显示到页面上*/)), U())
+
 }
 evalRun = !1;
 doEvalRun = function (a, b, d, c, f) {
@@ -402,8 +416,8 @@ doEvalRun = function (a, b, d, c, f) {
 };
 initializeMap(u);
 
-function W() {
+function carMoveFun() {
     V();
-    runFast ? setTimeout(W, 0) : window.requestAnimationFrame(W)
+    runFast ? setTimeout(carMoveFun, 0) : window.requestAnimationFrame(carMoveFun)
 }
-headless || (document.getElementById("canvas").getContext("2d").scale(2, 2), document.getElementById("canvas").getContext("2d").translate(30, 0), W());
+headless || (document.getElementById("canvas").getContext("2d").scale(2, 2), document.getElementById("canvas").getContext("2d").translate(30, 0), carMoveFun());

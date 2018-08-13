@@ -253,9 +253,13 @@ src="DeepTraffic%20%20MIT%206_S094%20Deep%20Learning%20for%20Self-Driving%20Cars
 <IMG id="redCarSmall" style="display: none;" src="DeepTraffic%20%20MIT%206_S094%20Deep%20Learning%20for%20Self-Driving%20Cars_files/car-red-small.png"> 
 <DIV class="mainContainer">
 <DIV class="infoCol">
-<DIV class="speedBox">      Speed: <BR><SPAN id="mph" 
-style="font-size: 16pt;">0</SPAN> mph<BR> Cars Passed: <BR><SPAN id="passed" 
-style="font-size: 16pt;">0</SPAN>     </DIV></DIV>
+<DIV class="speedBox">
+    Speed: <BR>
+    <SPAN id="mph" style="font-size: 16pt;">0</SPAN> mph<BR><!--记录当前车速-->
+    Cars Passed: <BR><SPAN id="passed" style="font-size: 16pt;">0</SPAN>
+</DIV>
+</DIV>
+
 <DIV class="gameCol"><CANVAS width="400" height="1400" id="canvas"></CANVAS>     
 <BR>
 <DIV style="text-align: center;"><SPAN>Road Overlay:</SPAN>       <BR>
@@ -303,19 +307,22 @@ networks can help!</P></DIV>
 <DIV><BUTTON class="button-primary button-small" id="cropImage" style="display: none;">cropImage</BUTTON> 
           <BUTTON class="button-small" id="loadFile">Load Custom Image</BUTTON>  
          
-<DIV><SELECT name="colors" class="button-small" id="colorscheme"><OPTION id="red" 
-  value="#FF0000">Red</OPTION>               <OPTION id="maroon" 
-  value="#800000">Maroon</OPTION>               <OPTION id="black" value="#000000">Black</OPTION> 
-                <OPTION id="silver" value="#C0C0C0">Sliver</OPTION>              
-   <OPTION id="yellow" value="#FFFF00">Yellow</OPTION>               <OPTION id="lime" 
-  value="#00FF00">Lime</OPTION>               <OPTION id="green" 
-  value="#008000">Green</OPTION>               <OPTION id="aqua" 
-  value="#00FFFF">Aqua</OPTION>               <OPTION id="teal" 
-  value="#008080">Teal</OPTION>               <OPTION id="blue" 
-  value="#0000FF">Blue</OPTION>               <OPTION id="navy" 
-  value="#0000F0">Navy</OPTION>               <OPTION id="fuchsia" value="#FF00FF">Fuchsia</OPTION> 
-                <OPTION id="purple" value="#800080">Purple</OPTION>             
-</SELECT>           </DIV>
+<DIV><SELECT name="colors" class="button-small" id="colorscheme">
+    <OPTION id="red" value="#FF0000">Red</OPTION>
+    <OPTION id="maroon" value="#800000">Maroon</OPTION>
+    <OPTION id="black" value="#000000">Black</OPTION>
+    <OPTION id="silver" value="#C0C0C0">Sliver</OPTION>
+    <OPTION id="yellow" value="#FFFF00">Yellow</OPTION>
+    <OPTION id="lime" value="#00FF00">Lime</OPTION>
+    <OPTION id="green" value="#008000">Green</OPTION>
+    <OPTION id="aqua" value="#00FFFF">Aqua</OPTION>
+    <OPTION id="teal" value="#008080">Teal</OPTION>
+    <OPTION id="blue" value="#0000FF">Blue</OPTION>
+    <OPTION id="navy" value="#0000F0">Navy</OPTION>
+    <OPTION id="fuchsia" value="#FF00FF">Fuchsia</OPTION>
+    <OPTION id="purple" value="#800080">Purple</OPTION>
+</SELECT>
+</DIV>
 <DIV>
     <BUTTON class="button-small" id="requestVisualization">Request Visualization</BUTTON>
 </DIV>
