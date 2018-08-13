@@ -1,17 +1,17 @@
 // helper scripts for the general site - to make the buttons work, editor show up etc.
-require.config({
-    paths: {
-        'vs': 'monaco-editor/min/vs'
-    }
-});
-require(['vs/editor/editor.main'], function () {
-    editor = monaco.editor.create(document.getElementById('container'), {
-        value: document.getElementById("sampleCode").innerHTML.split("\n        ").join("\n"),
-        language: 'javascript',
-        //theme: "vs-dark",
-        wrappingColumn: 75,
-    });
-});
+// require.config({
+//     paths: {
+//         'vs': 'monaco-editor/min/vs'
+//     }
+// });
+// require(['vs/editor/editor.main'], function () {
+//     editor = monaco.editor.create(document.getElementById('container'), {
+//         value: document.getElementById("sampleCode").innerHTML.split("\n        ").join("\n"),
+//         language: 'javascript',
+//         //theme: "vs-dark",
+//         wrappingColumn: 75,
+//     });
+// });
 
 run = function () {
     reward_graph = new cnnvis.Graph();
@@ -29,8 +29,8 @@ console.log(document.getElementById("sampleCode").innerHTML);
 brain.learning = false;
 
 function getData() {
-    var data = editor.getValue(0) + "\n/*###########*/\n";
-
+   // var data = editor.getValue(0) + "\n/*###########*/\n";
+    var data;
     if (brain) {
         data += "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
     }
@@ -70,7 +70,7 @@ readFile = function (picker) {
                 reader.onload = function (event) {
                     var data = event.target.result;
                     eval(data);
-                    editor.setValue(data.split("\n/*###########*/\n")[0]);
+                   // editor.setValue(data.split("\n/*###########*/\n")[0]);
                     brain.learning = false;
                     reset();
                     swal("Success", "File loaded!", "success");
@@ -116,13 +116,13 @@ submitNet = function () {
 }
 
 startEvalRun = function () {
-    var button = document.getElementById("evalButton");
-    var progress = document.getElementById("evalProgress");
+    var button = document.getElementById("evalButton");//评估的按钮
+    var progress = document.getElementById("evalProgress");//显示评估的进度条
     button.setAttribute("style", "display: none;");
-    progress.value = 0;
+    progress.value = 0;//刚开始进度条显示为0
     progress.setAttribute("style", ";");
     if (window.Worker) {
-        var myWorker = new Worker("eval_webworker.js");
+        var myWorker = new Worker("");//删掉了，忘记了不知道删掉了什么
         myWorker.onmessage = function (e) {
             if (typeof e.data.percent != 'undefined') {
                 progress.value = e.data.percent;
@@ -142,14 +142,15 @@ startEvalRun = function () {
     }
 }
 
+//训练编辑框中的函数
 train = function () {
     brain.learning = false;
     //显示任务进度
-    var button = document.getElementById("trainButton");
-    var progress = document.getElementById("trainProgress");
+    var button = document.getElementById("trainButton");//训练的按钮
+    var progress = document.getElementById("trainProgress");//训练的进度条
 
     button.setAttribute("style", "display: none;");
-    progress.value = 0;
+    progress.value = 0;//初始训练的进度为0
     progress.setAttribute("style", ";");
 
     if (window.Worker) {
