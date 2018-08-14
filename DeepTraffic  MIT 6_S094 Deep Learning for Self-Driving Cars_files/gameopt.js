@@ -143,32 +143,32 @@ function D() {
     this.f = !1;
     this.l = function () {
         for (var a =
-            0; 15 > a; a += 10) for (var b = 0; 34 > b; b += 5) H.set((this.x + a) / 20, (this.y + b) / 10, 1 * this.c * this.a)
+            0; 15 > a; a += 10) for (var b = 0; 34 > b; b += 5) MapH.set((this.x + a) / 20, (this.y + b) / 10, 1 * this.c * this.a)
     };
     this.u = function () {
         for (var a = 2, b = 1; 5 > b; b++) {
-            var d = H.get((this.x + 7.5) / 20, (this.y - 10 * b) / 10, 100);
+            var d = MapH.get((this.x + 7.5) / 20, (this.y - 10 * b) / 10, 100);
             100 > d && (a = Math.min(a, .5 * (b - 1)), a = Math.min(a, d / this.a))
         }
         this.c = a
     };
     this.i = function (a) {
-        for (var b = (this.x + 7.5) / 20 + a, d = this.y / 10, c = .5 > Math.abs(this.x - (20 * this.b + 4)), f = 3 * -this.a; 4 > f; f++) c = c && 100 <= H.get(b, d + f, 0);
+        for (var b = (this.x + 7.5) / 20 + a, d = this.y / 10, c = .5 > Math.abs(this.x - (20 * this.b + 4)), f = 3 * -this.a; 4 > f; f++) c = c && 100 <= MapH.get(b, d + f, 0);
         c && (this.b += a);
         return c
     };
     this.v = function () {
-        for (var a = !0, b = 1; 5 > b; b++) a = a && 100 <= H.get((this.x + 7.5) / 20, (this.y - 10 * b) / 10, a ? 0 : 2);
-        for (b = 1; 5 > b; b++) I.set((this.x + 7.5) / 20, (this.y - 10 * b) / 10, a ? 0 : 2);
+        for (var a = !0, b = 1; 5 > b; b++) a = a && 100 <= MapH.get((this.x + 7.5) / 20, (this.y - 10 * b) / 10, a ? 0 : 2);
+        for (b = 1; 5 > b; b++) MapI.set((this.x + 7.5) / 20, (this.y - 10 * b) / 10, a ? 0 : 2);
         b = (this.x + 7.5) / 20 + -1;
         var d = this.y / 10;
         a = .5 > Math.abs(this.x - (20 * this.b + 4));
-        for (var c = 3 * -this.a; 4 > c; c++) a = a && 100 <= H.get(b, d + c, 0);
-        for (c = 3 * -this.a; 4 > c; c++) I.set(b, d + c, a ? 0 : 2);
+        for (var c = 3 * -this.a; 4 > c; c++) a = a && 100 <= MapH.get(b, d + c, 0);
+        for (c = 3 * -this.a; 4 > c; c++) MapI.set(b, d + c, a ? 0 : 2);
         b = (this.x + 7.5) / 20 + 1;
         a = .5 > Math.abs(this.x - (20 * this.b + 4));
-        for (c = 3 * -this.a; 4 > c; c++) a = a && 100 <= H.get(b, d + c, 0);
-        for (c = 3 * -this.a; 4 > c; c++) I.set(b, d + c, a ? 0 : 2)
+        for (c = 3 * -this.a; 4 > c; c++) a = a && 100 <= MapH.get(b, d + c, 0);
+        for (c = 3 * -this.a; 4 > c; c++) MapI.set(b, d + c, a ? 0 : 2)
     };
     this.m = function (a) {
         switch (a) {
@@ -190,7 +190,7 @@ function D() {
         return Math.floor(a / this.h.length)
     }
 }
-for (var H = new Map(7, 70, 100), I = new Map(7, 70, 100), K = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, z = [], L = 0; 20 > L; L++)
+for (var MapH = new Map(7, 70, 100), MapI = new Map(7, 70, 100), MapK = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, z = [], L = 0; 20 > L; L++)
     z.push(new D);
 
 var brains = y(),
@@ -237,9 +237,9 @@ initializeMap = function (a) {
 };
 reset = function () {
     nOtherAgents != Math.min(otherAgents, 10) && (nOtherAgents = Math.min(otherAgents, 10), brains = y(), w = !1);
-    H = new Map(7, 70, 100);
-    I = new Map(7, 70, 100);
-    K = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0);
+    MapH = new Map(7, 70, 100);
+    MapI = new Map(7, 70, 100);
+    MapK = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0);
     z = [];
     for (var a = 0; 20 > a; a++) z.push(new D),
     a < nOtherAgents + 1 && (z[a].f = !0);
@@ -330,12 +330,12 @@ function U() {
     M += E;
     M %= 20;
     for (c = 1; 7 > c; c++) for (b = 0; 36 > b; b++) a.fillRect(20 * c, 20 * b + 2 + M - 10, 2, 8);
-    if (selectFullMap) for (c = 0; c < H.data.length; c++) for (b = 0; b < H.data[c].length; b++) d = H.get(c, b, 0),
+    if (selectFullMap) for (c = 0; c < MapH.data.length; c++) for (b = 0; b < MapH.data[c].length; b++) d = MapH.get(c, b, 0),
         a.fillStyle = 0 < d ? "rgba(250,120,0," + d / 100 + ")" : "rgba(0,120,250," + -d / 100 + ")",
         a.fillRect(20 * c + 2, 10 * b + 2, 18, 8);
-    if (selectSafetySystem) for (c = 0; c < H.data.length; c++) for (b = 0; b < H.data[c].length; b++) d = I.get(c, b, 100),
+    if (selectSafetySystem) for (c = 0; c < MapH.data.length; c++) for (b = 0; b < MapH.data[c].length; b++) d = MapI.get(c, b, 100),
         0 == d ? (a.fillStyle = "rgba(250,120,0,0.5)", a.fillRect(20 * c + 2, 10 * b + 2, 18, 8)) : 2 == d && (a.fillStyle = "rgba(250,0,0,0.5)", a.fillRect(20 * c + 2, 10 * b + 2, 18, 8));
-    if (selectLearningInput) for (c = -lanesSide; c <= lanesSide; c++) for (b = -patchesAhead; b < patchesBehind; b++) d = K.get(c + lanesSide, b + patchesAhead, 0),
+    if (selectLearningInput) for (c = -lanesSide; c <= lanesSide; c++) for (b = -patchesAhead; b < patchesBehind; b++) d = MapK.get(c + lanesSide, b + patchesAhead, 0),
         a.fillStyle = 100 < d ? "rgba(120,250,120," + (d / 10 / 103 + .1) + ")" : 0 < d ? "rgba(250,120,0," + (d / 101 + .1) + ")" : "rgba(0,120,250," + (-d / 101 + .1) + ")",
         a.fillRect(20 * Math.floor(C + c) + 2, 10 * Math.floor(52.5 + b) + 2, 18, 8);
     a.save();
@@ -345,7 +345,7 @@ function U() {
 //V是汽车每次移动的处理函数
 function V() {
     !w && void 0 !== brain.forward_passes && brain.forward_passes > brain.temporal_window && (brains = y(), w = !0);
-    H.reset();
+    MapH.reset();
 
 
     for (var a = 0; a < z.length; a++) z[a].move(0 != a, a),
@@ -361,7 +361,7 @@ function V() {
     for (a = 1; a <= nOtherAgents; a++) {
         if (G % 30 == 3 * a) {
             var d = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0);
-            H.o(a, d);
+            MapH.o(a, d);
             eval(A(a));
             d = tmpLearn(d.s());
             d = 0 <= d && d < n.length ? d : J
@@ -370,9 +370,9 @@ function V() {
     }
 
     z[0].l();
-    selectSafetySystem && (I.reset(), z[0].v());
+    selectSafetySystem && (MapI.reset(), z[0].v());
     N += z[0].c * z[0].a;
-    0 == G % 30 && (H.o(0, K), d = learn(K.s(), (N - 60) / 20), d = 0 <= d && d < n.length ? d : J, N = 0);
+    0 == G % 30 && (MapH.o(0, MapK), d = learn(MapK.s(), (N - 60) / 20), d = 0 <= d && d < n.length ? d : J, N = 0);
     z[0].m(d);
     G++;
     0 == G % 1E4 && console.log(G);

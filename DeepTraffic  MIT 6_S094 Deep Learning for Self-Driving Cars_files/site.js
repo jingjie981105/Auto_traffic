@@ -53,7 +53,9 @@ downloadCode = function () {
 
 document.getElementById("downloadCodeButton").onclick = downloadCode;
 
+//读取现有的训练数据的函数，readFile(this)
 readFile = function (picker) {
+    //弹出漂亮的提示界面
     swal({
         title: 'Are you sure?',
         text: 'This will OVERWRITE the current CODE and trained net state!',
