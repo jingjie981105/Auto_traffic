@@ -55,7 +55,7 @@ function A(a) {
     return b.replace(/brain/g, "brains[" + (a - 1) + "]")
 }
 
-function Map(width,length,defaultvalue) {//(a,b,d)
+function Map(width,length,defaultvalue) {//(a,b,d)defaultvalue保存的应该是当前汽车所处的位置的数据
     this.data = [];
     this.defaultValue = defaultvalue;
     for (var c = 0; c < width; c++) {
@@ -348,7 +348,9 @@ function V() {
     MapH.reset();
 
 
-    for (var a = 0; a < z.length; a++) z[a].move(0 != a, a),
+    //Z是容量为20的数组，存的是D(),D具体是什么还不清楚
+    for (var a = 0; a < z.length; a++)
+        z[a].move(0 != a, a),
         z[a].l();
 
 

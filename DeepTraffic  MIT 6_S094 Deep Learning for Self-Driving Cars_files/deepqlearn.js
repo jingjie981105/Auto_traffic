@@ -156,6 +156,12 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
       }
       return {action:maxk, value:maxval};
     },
+
+      /*
+      getNetInput函数会把一个当前时间步的状态向量转换成一个包含前若干个时间步的状态向量以及动作向量的输入向量；
+      temporal_window是往前追溯多个对 <s,a> 状态动作组；
+      经过转换后，神经网络的输入向量就相当于让状态从原来的静态特征变为包含动态特征的向量。
+       */
     getNetInput: function(xt) {
       // return s = (x,a,x,a,x,a,xt) state vector. 
       // It's a concatenation of last window_size (x,a) pairs and current state x
@@ -230,14 +236,16 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
       this.age += 1;
       
       // it is time t+1 and we have to store (s_t, a_t, r_t, s_{t+1}) as new experience
-      // (given that an appropriate number of state measurements already exist, of course)
-      if(this.forward_passes > this.temporal_window + 1) {
+        // (given that an appropriate number of state measurements already exist, of course)
+
+        if(this.forward_passes > this.temporal_window + 1) {
         var e = new Experience();
         var n = this.window_size;
         e.state0 = this.net_window[n-2];
         e.action0 = this.action_window[n-2];
         e.reward0 = this.reward_window[n-2];
         e.state1 = this.net_window[n-1];
+
         if(this.experience.length < this.experience_size) {
           this.experience.push(e);
         } else {
@@ -249,14 +257,19 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
       
       // learn based on experience, once we have some samples to go on
       // this is where the magic happens...
+        // 当经验元组的缓存经验大于开始阀值时才开始训练
       if(this.experience.length > this.start_learn_threshold) {
         var avcost = 0.0;
         for(var k=0;k < this.tdtrainer.batch_size;k++) {
+            //re是随机数下标
           var re = convnetjs.randi(0, this.experience.length);
+            //e是随机经验元组
           var e = this.experience[re];
           var x = new convnetjs.Vol(1, 1, this.net_inputs);
           x.w = e.state0;
+            //用policy函数生成最优策略
           var maxact = this.policy(e.state1);
+            //r就是TD目标
           var r = e.reward0 + this.gamma * maxact.value;
           var ystruct = {dim: e.action0, val: r};
           var loss = this.tdtrainer.train(x, ystruct);

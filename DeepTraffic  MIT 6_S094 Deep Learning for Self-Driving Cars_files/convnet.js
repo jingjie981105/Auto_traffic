@@ -1,3 +1,4 @@
+//神经网络的详细生成过程
 var convnetjs = convnetjs || { REVISION: 'ALPHA' };
 (function(global) {
   "use strict";

@@ -4,6 +4,9 @@
 //         'vs': 'monaco-editor/min/vs'
 //     }
 // });
+
+
+//这里实现读取编辑框的内容，都被我注释掉了，应该不会显示了的
 // require(['vs/editor/editor.main'], function () {
 //     editor = monaco.editor.create(document.getElementById('container'), {
 //         value: document.getElementById("sampleCode").innerHTML.split("\n        ").join("\n"),
@@ -25,7 +28,7 @@ run = function () {
     }
 
 }
-console.log(document.getElementById("sampleCode").innerHTML);//运行到此处时，控制台显示页面上的信息
+//console.log(document.getElementById("sampleCode").innerHTML);//运行到此处时，控制台显示页面上的信息
 brain.learning = false;
 
 function getData() {
@@ -70,6 +73,7 @@ readFile = function (picker) {
                 var reader = new FileReader();
                 reader.readAsText(file, "UTF-8");
                 reader.onload = function (event) {
+                    //当读取操作成功完成时调用
                     var data = event.target.result;
                     eval(data);
                    // editor.setValue(data.split("\n/*###########*/\n")[0]);
