@@ -96,7 +96,7 @@ function Car() {
     this.a = this.c = 1;
     this.lane = 0;
     this.speedHistory = Array(60);
-    this.j = function () {
+    this.initial = function () {
         var a = Math.floor(140 * q(v) / 20);
         this.x = 20 * a + 4;
         switch (a) {
@@ -128,7 +128,7 @@ function Car() {
         this.f || (this.a = 1 + .7 * gasPedalModulator());
         this.lane = a
     };
-    this.j();
+    this.initial();
     this.y = 10 * Math.floor(700 * Math.random() / 10);
     this.move = function (a) {
         var b = this.y - (this.c * this.a - E);
@@ -137,8 +137,8 @@ function Car() {
         this.speedHistory[G % this.speedHistory.length] = this.c * this.a * 20;
         a = 20 * this.lane + 4 - this.x;
         this.x = Math.abs(a) < 20 / 30 ? 20 * this.lane + 4 : 0 < a ? this.x + 20 / 30 : this.x - 20 / 30;
-        0 > this.y + 68 && (this.y = 734, this.j());
-        700 < this.y - 68 && (this.y = -34, this.j())
+        0 > this.y + 68 && (this.y = 734, this.initial());
+        700 < this.y - 68 && (this.y = -34, this.initial())
     };
     this.f = !1;
     this.l = function () {
