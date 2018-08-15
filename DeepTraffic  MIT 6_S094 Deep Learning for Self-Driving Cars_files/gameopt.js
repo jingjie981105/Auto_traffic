@@ -38,12 +38,12 @@ function exchangeBrainForm(tempBrains) {
 //var brains=y()
 function y() {
     var otherAgents = nOtherAgents,
-        b = z;//b在此定义
+        allcars = allCars;//b在此定义
     console.log("cloning");
     for (var d = [], c = 0; c < otherAgents; c++) d.push(exchangeBrainForm(brain));
-    for (c = 0; 20 > c; c++) b[c].f = !1;
-    for (c = 0; c < otherAgents; c++) b[c + 1].f = !0;
-    b[0].f = !0;
+    for (c = 0; 20 > c; c++) allcars[c].f = !1;
+    for (c = 0; c < otherAgents; c++) allcars[c + 1].f = !0;
+    allcars[0].f = !0;
     return d
 }
 
@@ -82,8 +82,8 @@ function Map(width,length,defaultvalue) {//(a,b,d)defaultvalue保存的应该是
         var c = lanesSide,
             d = patchesAhead,
             f = patchesBehind;
-        0 == a && (C = z[0].b);
-        for (var g = -c; g <= c; g++) for (var h = -d; h < f; h++) b.data[g + c][h + d] = this.get(z[a].b + g, Math.floor(z[a].y) / 10 + h, 0)
+        0 == a && (C = allCars[0].b);
+        for (var g = -c; g <= c; g++) for (var h = -d; h < f; h++) b.data[g + c][h + d] = this.get(allCars[a].b + g, Math.floor(allCars[a].y) / 10 + h, 0)
     };
     this.s = function () {
         for (var a = Array(this.data.length * this.data[0].length), b = 0; b < this.data.length; b++) for (var c = 0; c < this.data[b].length; c++) a[this.data.length * c + b] = this.data[b][c] / 100;
@@ -91,10 +91,10 @@ function Map(width,length,defaultvalue) {//(a,b,d)defaultvalue保存的应该是
     }
 }
 
-function D() {
+function Car() {
     this.y = this.x = 0;
     this.a = this.c = 1;
-    this.b = 0;
+    this.lane = 0;
     this.h = Array(60);
     this.j = function () {
         var a = Math.floor(140 * q(v) / 20);
@@ -126,7 +126,7 @@ function D() {
                 }
         }
         this.f || (this.a = 1 + .7 * gasPedalModulator());
-        this.b = a
+        this.lane = a
     };
     this.j();
     this.y = 10 * Math.floor(700 * Math.random() / 10);
@@ -135,8 +135,8 @@ function D() {
         a && 525 > this.y && 525 <= b ? (F++, headless || (document.getElementById("passed").innerText = F)) : a && 525 < this.y && 525 >= b && (F--, headless || (document.getElementById("passed").innerText = F));
         this.y = b;
         this.h[G % this.h.length] = this.c * this.a * 20;
-        a = 20 * this.b + 4 - this.x;
-        this.x = Math.abs(a) < 20 / 30 ? 20 * this.b + 4 : 0 < a ? this.x + 20 / 30 : this.x - 20 / 30;
+        a = 20 * this.lane + 4 - this.x;
+        this.x = Math.abs(a) < 20 / 30 ? 20 * this.lane + 4 : 0 < a ? this.x + 20 / 30 : this.x - 20 / 30;
         0 > this.y + 68 && (this.y = 734, this.j());
         700 < this.y - 68 && (this.y = -34, this.j())
     };
@@ -153,8 +153,8 @@ function D() {
         this.c = a
     };
     this.i = function (a) {
-        for (var b = (this.x + 7.5) / 20 + a, d = this.y / 10, c = .5 > Math.abs(this.x - (20 * this.b + 4)), f = 3 * -this.a; 4 > f; f++) c = c && 100 <= MapH.get(b, d + f, 0);
-        c && (this.b += a);
+        for (var b = (this.x + 7.5) / 20 + a, d = this.y / 10, c = .5 > Math.abs(this.x - (20 * this.lane + 4)), f = 3 * -this.a; 4 > f; f++) c = c && 100 <= MapH.get(b, d + f, 0);
+        c && (this.lane += a);
         return c
     };
     this.v = function () {
@@ -162,11 +162,11 @@ function D() {
         for (b = 1; 5 > b; b++) MapI.set((this.x + 7.5) / 20, (this.y - 10 * b) / 10, a ? 0 : 2);
         b = (this.x + 7.5) / 20 + -1;
         var d = this.y / 10;
-        a = .5 > Math.abs(this.x - (20 * this.b + 4));
+        a = .5 > Math.abs(this.x - (20 * this.lane + 4));
         for (var c = 3 * -this.a; 4 > c; c++) a = a && 100 <= MapH.get(b, d + c, 0);
         for (c = 3 * -this.a; 4 > c; c++) MapI.set(b, d + c, a ? 0 : 2);
         b = (this.x + 7.5) / 20 + 1;
-        a = .5 > Math.abs(this.x - (20 * this.b + 4));
+        a = .5 > Math.abs(this.x - (20 * this.lane + 4));
         for (c = 3 * -this.a; 4 > c; c++) a = a && 100 <= MapH.get(b, d + c, 0);
         for (c = 3 * -this.a; 4 > c; c++) MapI.set(b, d + c, a ? 0 : 2)
     };
@@ -190,8 +190,8 @@ function D() {
         return Math.floor(a / this.h.length)
     }
 }
-for (var MapH = new Map(7, 70, 100), MapI = new Map(7, 70, 100), MapK = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, z = [], L = 0; 20 > L; L++)
-    z.push(new D);
+for (var MapH = new Map(7, 70, 100), MapI = new Map(7, 70, 100), MapK = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, allCars = [], L = 0; 20 > L; L++)
+    allCars.push(new Car);
 
 var brains = y(),
     G = 0,
@@ -211,38 +211,38 @@ initializeMap = function (a) {
             d += 1;
         return c
     }
-    z[0].y = 525;
-    z[0].x = 64;
-    z[0].b = 3;
+    allCars[0].y = 525;
+    allCars[0].x = 64;
+    allCars[0].lane = 3;
     legalLocations = Array(490).fill().map(function (a, b) {
         return b
     });
-    var c = Math.floor(z[0].x / 20),
-        f = Math.floor(z[0].y / 10 + 4),
+    var c = Math.floor(allCars[0].x / 20),
+        f = Math.floor(allCars[0].y / 10 + 4),
         l = d(c, f);
-    z[0].a = 2;
+    allCars[0].a = 2;
     for (var h = 0; h < l.length; h++) legalLocations.splice(legalLocations.indexOf(l[h]), 1);
-    for (var g = 1; g < z.length; g++) {
+    for (var g = 1; g < allCars.length; g++) {
         c = b(legalLocations);
         f = Math.floor(c / 7);
         c %= 7;
         l = d(c, f);
         for (h = 0; h < l.length; h++) legalLocations.splice(legalLocations.indexOf(l[h]), 1);
-        z[g].x = Math.floor(20 * c + 4);
-        z[g].y = Math.floor(f / 70 * 700);
-        z[g].b = c;
-        z[g].f && (z[g].a = 1.7)
+        allCars[g].x = Math.floor(20 * c + 4);
+        allCars[g].y = Math.floor(f / 70 * 700);
+        allCars[g].lane = c;
+        allCars[g].f && (allCars[g].a = 1.7)
     }
-    z[0].a = 2
+    allCars[0].a = 2
 };
 reset = function () {
     nOtherAgents != Math.min(otherAgents, 10) && (nOtherAgents = Math.min(otherAgents, 10), brains = y(), w = !1);
     MapH = new Map(7, 70, 100);
     MapI = new Map(7, 70, 100);
     MapK = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0);
-    z = [];
-    for (var a = 0; 20 > a; a++) z.push(new D),
-    a < nOtherAgents + 1 && (z[a].f = !0);
+    allCars = [];
+    for (var a = 0; 20 > a; a++) allCars.push(new Car),
+    a < nOtherAgents + 1 && (allCars[a].f = !0);
     r += 1;
     t += 1;
     u = new p(r);
@@ -304,14 +304,14 @@ function U() {
     var a = document.getElementById("canvas").getContext("2d");
     a.globalCompositeOperation = "destination-over";
     a.clearRect(-30, 0, 1E3, 1E3);
-    for (var b = document.getElementById("vehicle"), d = document.getElementById("whiteCarSmall"), c = 1; c < nOtherAgents + 1; c++) a.drawImage(b, z[c].x, z[c].y, 15, 34);
-    for (c = nOtherAgents + 1; c < z.length; c++) a.drawImage(d, z[c].x, z[c].y, 15, 34);
-    a.drawImage(b, z[0].x, z[0].y, 15, 34);
+    for (var b = document.getElementById("vehicle"), d = document.getElementById("whiteCarSmall"), c = 1; c < nOtherAgents + 1; c++) a.drawImage(b, allCars[c].x, allCars[c].y, 15, 34);
+    for (c = nOtherAgents + 1; c < allCars.length; c++) a.drawImage(d, allCars[c].x, allCars[c].y, 15, 34);
+    a.drawImage(b, allCars[0].x, allCars[0].y, 15, 34);
     if (null !== T) {
         for (b = S.length - 1; 0 <= b; b--) {
             d = (b + T) % S.length;
             if (void 0 === S[d]) break;
-            S[d].y += z[0].c;
+            S[d].y += allCars[0].c;
             d = S[d];
             a.globalAlpha =
                 Math.min(.1, Math.pow(b / S.length, 5));
@@ -320,8 +320,8 @@ function U() {
         T = (T + 1) % S.length
     } else T = 0;
     S[T] = {
-        x: z[0].x,
-        y: z[0].y
+        x: allCars[0].x,
+        y: allCars[0].y
     };
     a.globalAlpha = 1;
     a.fillStyle = "rgba(120,120,120,0.4)";
@@ -349,15 +349,15 @@ function V() {
 
 
     //Z是容量为20的数组，存的是D(),D具体是什么还不清楚
-    for (var a = 0; a < z.length; a++)
-        z[a].move(0 != a, a),
-        z[a].l();
+    for (var a = 0; a < allCars.length; a++)
+        allCars[a].move(0 != a, a),
+        allCars[a].l();
 
 
-    E = 1.5 - (z[0].y - 525);
-    for (a = 0; a < z.length; a++) if (z[a].u(), a > nOtherAgents && q(v) > .99 + .004 * z[a].c) {
+    E = 1.5 - (allCars[0].y - 525);
+    for (a = 0; a < allCars.length; a++) if (allCars[a].u(), a > nOtherAgents && q(v) > .99 + .004 * allCars[a].c) {
         var b = .5 < q(v) ? -1 : 1;
-        z[a].i(b)
+        allCars[a].i(b)
     }
 
     for (a = 1; a <= nOtherAgents; a++) {
@@ -368,17 +368,17 @@ function V() {
             d = tmpLearn(d.s());
             d = 0 <= d && d < n.length ? d : J
         }
-        z[a].m(d)
+        allCars[a].m(d)
     }
 
-    z[0].l();
-    selectSafetySystem && (MapI.reset(), z[0].v());
-    N += z[0].c * z[0].a;
+    allCars[0].l();
+    selectSafetySystem && (MapI.reset(), allCars[0].v());
+    N += allCars[0].c * allCars[0].a;
     0 == G % 30 && (MapH.o(0, MapK), d = learn(MapK.s(), (N - 60) / 20), d = 0 <= d && d < n.length ? d : J, N = 0);
-    z[0].m(d);
+    allCars[0].m(d);
     G++;
     0 == G % 1E4 && console.log(G);
-    headless || (G % 30 && (a = z[0].w(), isNaN(a) || (document.getElementById("mph").innerText = Math.max(0, a)/*将当前车速显示到页面上*/)), U())
+    headless || (G % 30 && (a = allCars[0].w(), isNaN(a) || (document.getElementById("mph").innerText = Math.max(0, a)/*将当前车速显示到页面上*/)), U())
 
 }
 evalRun = !1;
@@ -402,7 +402,7 @@ doEvalRun = function (a, b, d, c, f) {
         for (var O = 0, P = 0; P < b; P++) {
             0 == h % d && c();
             V();
-            for (var B = 0; B < nOtherAgents + 1; B++) O += Math.max(0, z[B].c * z[B].a) / (nOtherAgents + 1);
+            for (var B = 0; B < nOtherAgents + 1; B++) O += Math.max(0, allCars[B].c * allCars[B].a) / (nOtherAgents + 1);
             h++
         }
         f.push(Math.floor(O / b * 2E3) / 100)
