@@ -95,7 +95,7 @@ function Car() {
     this.y = this.x = 0;
     this.a = this.c = 1;
     this.lane = 0;
-    this.h = Array(60);
+    this.speedHistory = Array(60);
     this.j = function () {
         var a = Math.floor(140 * q(v) / 20);
         this.x = 20 * a + 4;
@@ -134,7 +134,7 @@ function Car() {
         var b = this.y - (this.c * this.a - E);
         a && 525 > this.y && 525 <= b ? (F++, headless || (document.getElementById("passed").innerText = F)) : a && 525 < this.y && 525 >= b && (F--, headless || (document.getElementById("passed").innerText = F));
         this.y = b;
-        this.h[G % this.h.length] = this.c * this.a * 20;
+        this.speedHistory[G % this.speedHistory.length] = this.c * this.a * 20;
         a = 20 * this.lane + 4 - this.x;
         this.x = Math.abs(a) < 20 / 30 ? 20 * this.lane + 4 : 0 < a ? this.x + 20 / 30 : this.x - 20 / 30;
         0 > this.y + 68 && (this.y = 734, this.j());
@@ -186,8 +186,8 @@ function Car() {
         }
     };
     this.w = function () {
-        for (var a = 0, b = 0; b < this.h.length; b++) a += this.h[b];
-        return Math.floor(a / this.h.length)
+        for (var a = 0, b = 0; b < this.speedHistory.length; b++) a += this.speedHistory[b];
+        return Math.floor(a / this.speedHistory.length)
     }
 }
 for (var MapH = new Map(7, 70, 100), MapI = new Map(7, 70, 100), MapK = new Map(1 + 2 * lanesSide, patchesAhead + patchesBehind, 0), C = 0, allCars = [], L = 0; 20 > L; L++)
