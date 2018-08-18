@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="An introduction to deep learning through the applied task of building a self-driving car. Taught by Lex Fridman." />
     <meta name="keywords" content="deep learning,lex fridman,self-driving cars,mit" />
-    <title>DeepTraffic | MIT 6.S094: Deep Learning for Self-Driving Cars</title>
+    <!--<title>DeepTraffic | MIT 6.S094: Deep Learning for Self-Driving Cars</title>-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="https://selfdrivingcars.mit.edu/wordpress/xmlrpc.php" />
         <!--[if lt IE 9]>
@@ -178,16 +178,18 @@ body.custom-background { background-color: #ffffff; }
 <body class="page-template-default page page-id-2112 custom-background full-width custom-background-white custom-font-enabled">
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
-		<hgroup>
+		<!--
+        <hgroup>
 			<h1 class="site-title"><a href="https://selfdrivingcars.mit.edu/" title="MIT 6.S094: Deep Learning for Self-Driving Cars" rel="home">MIT 6.S094: Deep Learning for Self-Driving Cars</a></h1>
 			<h2 class="site-description"></h2>
 		</hgroup>
-
+		-->
+<!--
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle">Menu</button>
 			<a class="assistive-text" href="#content" title="Skip to content">Skip to content</a>
-			<div class="menu-menu-1-container"><ul id="menu-menu-1" class="nav-menu"><li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-35"><a href="https://selfdrivingcars.mit.edu/">Home</a></li>
-<li id="menu-item-327" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-327"><a href="/deeptraffic">DeepTraffic</a></li>
+			<!--<div class="menu-menu-1-container"><ul id="menu-menu-1" class="nav-menu"><li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-35"><a href="https://selfdrivingcars.mit.edu/">Home</a></li>-->
+<!--<li id="menu-item-327" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-327"><a href="/deeptraffic">DeepTraffic</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2104"><a href="/deepcrash">DeepCrash</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2105"><a href="/segfuse">SegFuse</a></li>
 <li id="menu-item-326" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-326"><a href="/deeptesla">DeepTesla</a></li>
@@ -195,7 +197,9 @@ body.custom-background { background-color: #ffffff; }
 <li id="menu-item-112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-112"><a href="https://selfdrivingcars.mit.edu/register/">Register</a></li>
 <li id="menu-item-325" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-325"><a href="https://selfdrivingcars.mit.edu/profile/">View Profile</a></li>
 <li id="menu-item-339" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-339"><a href="https://selfdrivingcars.mit.edu/resources/">Resources</a></li>
-</ul></div>		</nav><!-- #site-navigation -->
+</ul></div>		</nav>
+-->
+<!-- #site-navigation -->
 
 			</header><!-- #masthead -->
 
@@ -229,23 +233,27 @@ body.custom-background { background-color: #ffffff; }
       </select>
     </div>
   </div>
-  <div class="codeCol">
+  <!--<div class="codeCol">
     <div class="headline">
       <h1 style="margin-bottom:10px;">Deep<span style="color:dodgerblue">Traffic</span></h1>
-      <!--            <a style="color: inherit;" href="/">Main Page</a>-->
+               <a style="color: inherit;" href="/">Main Page</a>
       <a href="/deeptraffic-visualization" target="_blank">Visualization</a>
       - <a href="/deeptraffic-leaderboard" target="_blank">Leaderboard</a>
       - <a href="/deeptraffic-about" target="_blank">About DeepTraffic</a>
       <p>Americans spend 8 billion hours stuck in traffic every year.<br>Deep neural networks can help!</p>
-    </div>
-    <div id="container" class="codeBox" style="border:1px solid grey;display:inline-block; vertical-align: top;"></div>
+    </div>-->
+      <!--去掉编辑框的盒子-->
+    <!--<div id="container" class="codeBox" style="border:1px solid grey;display:inline-block; vertical-align: top;"></div>-->
     <div style="margin-top:10px;">
-      <button class="button-small" onclick="run()">Apply Code/Reset Net</button>
-      <button id="downloadCodeButton" class="button-small">Save Code/Net to File</button>
-      <a id="blobDownload" style="display:none"></a>
+        <!--应用编辑框的按钮-->
+      <!--<button class="button-small" onclick="run()">Apply Code/Reset Net</button>-->
+      <!--<button id="downloadCodeButton" class="button-small">Save Code/Net to File</button>
+      <a id="blobDownload" style="display:none"></a>-->
+
+        <!--没看懂之前绝对不注释-->
       <label for="filePicker" class="button button-small">Load Code/Net from File</label>
       <input type="file" id="filePicker" onchange="readFile(this)" style="display: none;">
-      <button class="button-small" onclick="submitNet()">Submit Model to Competition</button>
+      <!--<button class="button-small" onclick="submitNet()">Submit Model to Competition</button>-->
     </div>
     <div>
       <div id="vehicle-div">
@@ -254,9 +262,9 @@ body.custom-background { background-color: #ffffff; }
           <img id="vehicle" src=static/picture/car-red.png>
         </div>
         <div>
-          <button id="cropImage" class="button-primary button-small" style="display:none">cropImage</button>
-          <button id="loadFile" class="button-small">Load Custom Image</button>
-          <div>
+          <!--<button id="cropImage" class="button-primary button-small" style="display:none">cropImage</button>-->
+          <!--<button id="loadFile" class="button-small">Load Custom Image</button>-->
+          <!--<div>
             <select id="colorscheme" name="colors" class="button-small">
               <option id="red" value="#FF0000">Red</option>
               <option id="maroon" value="#800000">Maroon</option>
@@ -272,15 +280,15 @@ body.custom-background { background-color: #ffffff; }
               <option id="fuchsia" value="#FF00FF">Fuchsia</option>
               <option id="purple" value="#800080">Purple</option>
             </select>
-          </div>
-          <div>
+          </div>-->
+          <!--<div>
             <button id="requestVisualization" class="button-small">Request Visualization</button>
-          </div>
-        </div>
-        <div class="example-links">
+          </div>-->
+        <!--</div>
+        <!--<div class="example-links">
           <a href="https://selfdrivingcars.mit.edu/deeptraffic-custom-car-gallery/" target="_blank">Custom Vehicle Images</a>
           <a href="https://selfdrivingcars.mit.edu/deeptraffic-visualization/" target="_blank">See Your Visualization</a>
-        </div>
+        </div>-->
       </div>
 
       <div>
@@ -301,12 +309,12 @@ body.custom-background { background-color: #ffffff; }
     </div>
   </div>
 </div>
-
-<p>
+<!--去除文字叙述-->
+<!--<p>
     DeepTraffic is a deep reinforcement learning competition. The goal is to create a neural network to drive a vehicle (or multiple vehicles) as fast as possible through dense highway traffic. What you see above is all you need to succeed in this competition. Here are the basic steps (<a href="/deeptraffic-about/">more details here</a>):
-</p>
+</p>-->
 
-<ol>
+<!--<ol>
     <li>Change parameters in the code box (<a href="/deeptraffic-about/">hints here</a>).</li>
     <li>Click "Apply Code" white button.</li>
     <li>Click "Run Training" blue button.</li>
@@ -322,6 +330,7 @@ body.custom-background { background-color: #ffffff; }
     <li>Customize your color scheme (drop down).</li>
     <li>Click "Request Visualization".</li>
 </ol>
+-->
 <script src="static/js/helperstuff.js"></script>
 <script id="code" type="text/javascript"></script>
 <script id="sampleCode" type="text/javascript">
@@ -350,7 +359,7 @@ layer_defs.push({
 });
 layer_defs.push({
     type: 'fc',
-    num_neurons: 200,
+    num_neurons: 5,
     activation: 'relu'
 });
 layer_defs.push({

@@ -41,16 +41,16 @@ prepareDownload = function (link) {
 }
 
 // use this to download
-downloadCode = function () {
-    var blob = new Blob([getData()], {type: 'text/plain'});
-    var url = URL.createObjectURL(blob);
-    var blobAnchor = document.getElementById("blobDownload");
-    blobAnchor.download = "net.js";
-    blobAnchor.href = url;
-    blobAnchor.click();
-}
-
-document.getElementById("downloadCodeButton").onclick = downloadCode;
+// downloadCode = function () {
+//     var blob = new Blob([getData()], {type: 'text/plain'});
+//     var url = URL.createObjectURL(blob);
+//     var blobAnchor = document.getElementById("blobDownload");
+//     blobAnchor.download = "net.js";
+//     blobAnchor.href = url;
+//     blobAnchor.click();
+// }
+//
+// document.getElementById("downloadCodeButton").onclick = downloadCode;
 
 readFile = function (picker) {
     swal({
@@ -85,34 +85,34 @@ readFile = function (picker) {
 
 }
 
-submitNet = function () {
-    var http = new XMLHttpRequest();
-    var params = "code=" + encodeURIComponent(getData());
-    http.open("POST", "https://selfdrivingcars.mit.edu/deeptraffic/submit_code.php" , true);
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    http.onreadystatechange = function () {
-        if (http.readyState == 4) { // http.status == 200) {
-            try {
-                var result = JSON.parse(http.responseText);
-                if (result.success) {
-                    swal("Success", result.message, "success");
-                } else {
-                    swal({
-                        title: "Error",
-                        text: result.message,
-                        html: true,
-                        type: "error"
-                    });
-                }
-            } catch (error) {
-                swal("Error", "please try again", "error");
-            }
-
-        }
-    }
-    http.send(params);
-}
+// submitNet = function () {
+//     var http = new XMLHttpRequest();
+//     var params = "code=" + encodeURIComponent(getData());
+//     http.open("POST", "https://selfdrivingcars.mit.edu/deeptraffic/submit_code.php" , true);
+//     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//
+//     http.onreadystatechange = function () {
+//         if (http.readyState == 4) { // http.status == 200) {
+//             try {
+//                 var result = JSON.parse(http.responseText);
+//                 if (result.success) {
+//                     swal("Success", result.message, "success");
+//                 } else {
+//                     swal({
+//                         title: "Error",
+//                         text: result.message,
+//                         html: true,
+//                         type: "error"
+//                     });
+//                 }
+//             } catch (error) {
+//                 swal("Error", "please try again", "error");
+//             }
+//
+//         }
+//     }
+//     http.send(params);
+// }
 
 startEvalRun = function () {
     var button = document.getElementById("evalButton");
