@@ -2,7 +2,7 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
 (function(global) {
   "use strict";
 
-
+  // Random number utilities
   var return_v = false;
   var v_val = 0.0;
   var gaussRandom = function() {
@@ -24,8 +24,8 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
   var randn = function(mu, std){ return mu+gaussRandom()*std; }
 
   // Array utilities
-  var  zeros = function(n) {
-    if(typeof(n)==='undefined' || isNaN(n)) { return []; }//n未定义或者不是数字，返回空
+  var zeros = function(n) {
+    if(typeof(n)==='undefined' || isNaN(n)) { return []; }
     if(typeof ArrayBuffer === 'undefined') {
       // lacking browser support
       var arr = new Array(n);
@@ -570,8 +570,6 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
     },
     backward: function() {
       var V = this.in_act;
-
-
       V.dw = global.zeros(V.w.length); // zero out the gradient in input Vol
       
       // compute gradient wrt weights and data
@@ -635,8 +633,11 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
 (function(global) {
   "use strict";
   var Vol = global.Vol; // convenience
+  
   var PoolLayer = function(opt) {
+
     var opt = opt || {};
+
     // required
     this.sx = opt.sx; // filter size
     this.in_depth = opt.in_depth;

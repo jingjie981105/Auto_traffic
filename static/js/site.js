@@ -1,21 +1,21 @@
 // helper scripts for the general site - to make the buttons work, editor show up etc.
-require.config({
-    paths: {
-        'vs': 'monaco-editor/min/vs'
-    }
-});
-require(['vs/editor/editor.main'], function () {
-    editor = monaco.editor.create(document.getElementById('container'), {
-        value: document.getElementById("sampleCode").innerHTML.split("\n        ").join("\n"),
-        language: 'javascript',
-        //theme: "vs-dark",
-        wrappingColumn: 75,
-    });
-});
+// require.config({
+//     paths: {
+//         'vs': 'monaco-editor/min/vs'
+//     }
+// });
+// require(['vs/editor/editor.main'], function () {
+//     editor = monaco.editor.create(document.getElementById('container'), {
+//         value: document.getElementById("sampleCode").innerHTML.split("\n        ").join("\n"),
+//         language: 'javascript',
+//         //theme: "vs-dark",
+//         wrappingColumn: 75,
+//     });
+// });
 
 run = function () {
     reward_graph = new cnnvis.Graph();
-    eval(editor.getValue());
+    eval(document.getElementById("code").innerText);
     brain.learning = false;
     reset();
     if ((2 * lanesSide + 1) * (patchesAhead + patchesBehind) > 100) {
@@ -29,7 +29,7 @@ console.log(document.getElementById("sampleCode").innerHTML);
 brain.learning = false;
 
 function getData() {
-    var data = editor.getValue() + "\n/*###########*/\n";
+    var data = document.getElementById("sampleCode").innerText + "\n/*###########*/\n";
     if (brain) {
         data += "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
     }
@@ -149,7 +149,7 @@ train = function () {
     progress.value = 0;
     progress.setAttribute("style", ";");
     if (window.Worker) {
-        var myWorker = new Worker("train_webworker.js");
+        var myWorker = new Worker("static/js/train_webworker.js");
         myWorker.onmessage = function (e) {
             if (typeof e.data.percent != 'undefined') {
                 progress.value = e.data.percent;
