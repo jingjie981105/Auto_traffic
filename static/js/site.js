@@ -69,7 +69,7 @@ readFile = function (picker) {
                 reader.onload = function (event) {
                     var data = event.target.result;
                     eval(data);
-                    editor.setValue(data.split("\n/*###########*/\n")[0]);
+                    //editor.setValue(data.split("\n/*###########*/\n")[0]);
                     brain.learning = false;
                     reset();
                     swal("Success", "File loaded!", "success");
@@ -114,32 +114,32 @@ readFile = function (picker) {
 //     http.send(params);
 // }
 
-startEvalRun = function () {
-    var button = document.getElementById("evalButton");
-    var progress = document.getElementById("evalProgress");
-    button.setAttribute("style", "display: none;");
-    progress.value = 0;
-    progress.setAttribute("style", ";");
-    if (window.Worker) {
-        var myWorker = new Worker("eval_webworker.js");
-        myWorker.onmessage = function (e) {
-            if (typeof e.data.percent != 'undefined') {
-                progress.value = e.data.percent;
-            }
-
-            if (typeof e.data.mph != 'undefined') {
-                progress.setAttribute("style", "display: none;");
-                button.setAttribute("style", ";");
-                swal({
-                    title: "Evaluation complete",
-                    text: "Average speed: <b>" + e.data.mph + " mph</b>",
-                    html: true
-                });
-            }
-        };
-        myWorker.postMessage(getData());
-    }
-}
+// startEvalRun = function () {
+//     var button = document.getElementById("evalButton");
+//     var progress = document.getElementById("evalProgress");
+//     button.setAttribute("style", "display: none;");
+//     progress.value = 0;
+//     progress.setAttribute("style", ";");
+//     if (window.Worker) {
+//         var myWorker = new Worker("eval_webworker.js");
+//         myWorker.onmessage = function (e) {
+//             if (typeof e.data.percent != 'undefined') {
+//                 progress.value = e.data.percent;
+//             }
+//
+//             if (typeof e.data.mph != 'undefined') {
+//                 progress.setAttribute("style", "display: none;");
+//                 button.setAttribute("style", ";");
+//                 swal({
+//                     title: "Evaluation complete",
+//                     text: "Average speed: <b>" + e.data.mph + " mph</b>",
+//                     html: true
+//                 });
+//             }
+//         };
+//         myWorker.postMessage(getData());
+//     }
+// }
 
 train = function () {
     brain.learning = false;
@@ -148,6 +148,8 @@ train = function () {
     button.setAttribute("style", "display: none;");
     progress.value = 0;
     progress.setAttribute("style", ";");
+
+
     if (window.Worker) {
         var myWorker = new Worker("static/js/train_webworker.js");
         myWorker.onmessage = function (e) {

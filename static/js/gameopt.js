@@ -382,39 +382,42 @@ function V() {
 
 }
 evalRun = !1;
-doEvalRun = function (a, b, d, c, f) {
-    if (!0 === d) for (t = r = 0, "undefined" != typeof brain && brain.reset_seed(0), d = 0; d < brains.length; d++) brains[d].reset_seed(0);
+//doEvalRun = function (a, b, d, c, f)
+doEvalRun = function (numRuns, avgFramePerRun, boolJudge, func, totalFrameDivide100) {
+    if (!0 === boolJudge)
+        for (t = r = 0, "undefined" != typeof brain && brain.reset_seed(0), boolJudge = 0; boolJudge < brains.length; boolJudge++) brains[boolJudge].reset_seed(0);
     else {
         "undefined" != typeof brain && brain.reset_seed(Math.floor(1E7 * Math.random()));
-        for (d = 0; d < brains.length; d++) brains[d].reset_seed(Math.floor(1E7 * Math.random()));
+        for (boolJudge = 0; boolJudge < brains.length; boolJudge++) brains[boolJudge].reset_seed(Math.floor(1E7 * Math.random()));
         r = Math.floor(1E7 * Math.random());
         t = Math.floor(1E7 * Math.random())
     }
-    d = NaN;
-    "undefined" != typeof c && (d = f);
+    boolJudge = NaN;
+    "undefined" != typeof func && (boolJudge = totalFrameDivide100);
     headless = !0;
     var l = runFast;
     evalRun = runFast = !0;
-    f = [];
-    for (var h = 0, g = 0; g < a; g++) {
-        console.log("run: " + (g + 1) + "/" + a);
+    totalFrameDivide100 = [];
+    for (var h = 0, g = 0; g < numRuns; g++) {
+        console.log("run: " + (g + 1) + "/" + numRuns);
         reset();
-        for (var O = 0, P = 0; P < b; P++) {
-            0 == h % d && c();
+        for (var O = 0, P = 0; P < avgFramePerRun; P++) {
+            0 == h % boolJudge && func();
             V();
             for (var B = 0; B < nOtherAgents + 1; B++) O += Math.max(0, allCars[B].c * allCars[B].a) / (nOtherAgents + 1);
             h++
         }
-        f.push(Math.floor(O / b * 2E3) / 100)
+        totalFrameDivide100.push(Math.floor(O / avgFramePerRun * 2E3) / 100)
     }
     reset();
     runFast = l;
     evalRun = headless = !1;
-    f.sort();
-    console.log(f);
-    for (c = b = 0; c < f.length; c++) b += f[c];
-    console.log("avg: " + b / a + " median: " + f[a / 2]);
-    return f[a / 2]
+    totalFrameDivide100.sort();
+    console.log(totalFrameDivide100);
+    for (func = avgFramePerRun = 0; func < totalFrameDivide100.length; func++)
+        avgFramePerRun += totalFrameDivide100[func];
+    console.log("avg: " + avgFramePerRun / numRuns + " median: " + totalFrameDivide100[numRuns / 2]);
+    return totalFrameDivide100[numRuns / 2]
 };
 initializeMap(u);
 
