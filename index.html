@@ -247,8 +247,8 @@ body.custom-background { background-color: #ffffff; }
     <div style="margin-top:10px;">
         <!--应用编辑框的按钮-->
       <!--<button class="button-small" onclick="run()">Apply Code/Reset Net</button>-->
-      <!--<button id="downloadCodeButton" class="button-small">Save Code/Net to File</button>
-      <a id="blobDownload" style="display:none"></a>-->
+      <button id="downloadCodeButton" class="button-small">Save Code/Net to File</button>
+      <a id="blobDownload" style="display:none"></a>
 
         <!--没看懂之前绝对不注释-->
       <label for="filePicker" class="button button-small">Load Code/Net from File</label>
@@ -333,7 +333,7 @@ body.custom-background { background-color: #ffffff; }
 -->
 <script src="static/js/helperstuff.js"></script>
 <script id="code" type="text/javascript"></script>
-<script id="sampleCode" type="text/javascript">
+        <script id="sampleCode" type="text/javascript">
 //<![CDATA[
 
 // a few things don't have var in front of them - they update already existing variables the game needs
@@ -400,6 +400,7 @@ return action;
 
 //]]>
 </script>
+
 <script src="static/js/gameopt.js"></script>
 <script src="static/js/loader.js"></script>
 <script src="static/js/site.js"></script>
