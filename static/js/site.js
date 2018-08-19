@@ -12,7 +12,7 @@
 //         wrappingColumn: 75,
 //     });
 // });
-
+var TrainData="";
 run = function () {
     reward_graph = new cnnvis.Graph();
     eval(document.getElementById("code").innerText);
@@ -29,11 +29,11 @@ console.log(document.getElementById("sampleCode").innerHTML);
 brain.learning = false;
 
 function getData() {
-    var data = document.getElementById("sampleCode").innerText + "\n/*###########*/\n";
+
     if (brain) {
-        data += "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
+        TrainData += "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
     }
-    return data;
+    return TrainData;
 }
 // depricated
 prepareDownload = function (link) {
@@ -67,8 +67,8 @@ readFile = function (picker) {
                 var reader = new FileReader();
                 reader.readAsText(file, "UTF-8");
                 reader.onload = function (event) {
-                    var data = event.target.result;
-                    eval(data);
+                    TrainData = event.target.result;
+                    eval(TrainData);//直接执行文件中的代码
                     //editor.setValue(data.split("\n/*###########*/\n")[0]);
                     brain.learning = false;
                     reset();
