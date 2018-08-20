@@ -348,7 +348,7 @@ function V() {
     MapH.reset();
 
 
-    //Z是容量为20的数组，存的是D(),D具体是什么还不清楚
+    //Z是容量为20的数组，存的是D(),D具体是什么还不清楚是车
     for (var a = 0; a < allCars.length; a++)
         allCars[a].move(0 != a, a),
             allCars[a].l();

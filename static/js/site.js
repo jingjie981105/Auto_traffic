@@ -29,79 +29,10 @@ run = function () {
 brain.learning = false;
 
 function getData() {
-
+    //var data = editor.getValue() + "\n/*###########*/\n";
+    TrainData = document.getElementById("sampleCode").innerText+"\n/*###########*/\n";
     if (brain) {
-
-        TrainData += "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
-        if(TrainData.charAt(0)=='i'){//证明此时为第一次训练，需要获得初始化的训练数据
-
-            TrainData="//<![CDATA[\n" +
-                "\n" +
-                "// a few things don't have var in front of them - they update already existing variables the game needs\n" +
-                "lanesSide = 1;\n" +
-                "patchesAhead = 10;\n" +
-                "patchesBehind = 3;\n" +
-                "trainIterations = 10000;\n" +
-                "\n" +
-                "// the number of other autonomous vehicles controlled by your network\n" +
-                "otherAgents = 0; // max of 10\n" +
-                "\n" +
-                "var num_inputs = (lanesSide * 2 + 1) * (patchesAhead + patchesBehind);\n" +
-                "var num_actions = 5;\n" +
-                "var temporal_window = 3;\n" +
-                "var network_size = num_inputs * temporal_window + num_actions * temporal_window + num_inputs;\n" +
-                "\n" +
-                "var layer_defs = [];\n" +
-                "layer_defs.push({\n" +
-                "    type: 'input',\n" +
-                "    out_sx: 1,\n" +
-                "    out_sy: 1,\n" +
-                "    out_depth: network_size\n" +
-                "});\n" +
-                "layer_defs.push({\n" +
-                "    type: 'fc',\n" +
-                "    num_neurons: 5,\n" +
-                "    activation: 'relu'\n" +
-                "});\n" +
-                "layer_defs.push({\n" +
-                "    type: 'regression',\n" +
-                "    num_neurons: num_actions\n" +
-                "});\n" +
-                "\n" +
-                "var tdtrainer_options = {\n" +
-                "    learning_rate: 0.001,\n" +
-                "    momentum: 0.0,\n" +
-                "    batch_size: 64,\n" +
-                "    l2_decay: 0.01\n" +
-                "};\n" +
-                "\n" +
-                "var opt = {};\n" +
-                "opt.temporal_window = temporal_window;\n" +
-                "opt.experience_size = 3000;\n" +
-                "opt.start_learn_threshold = 500;\n" +
-                "opt.gamma = 0.7;\n" +
-                "opt.learning_steps_total = 10000;\n" +
-                "opt.learning_steps_burnin = 1000;\n" +
-                "opt.epsilon_min = 0.0;\n" +
-                "opt.epsilon_test_time = 0.0;\n" +
-                "opt.layer_defs = layer_defs;\n" +
-                "opt.tdtrainer_options = tdtrainer_options;\n" +
-                "\n" +
-                "brain = new deepqlearn.Brain(num_inputs, num_actions, opt);\n" +
-                "\n" +
-                "learn = function (state, lastReward) {\n" +
-                "brain.backward(lastReward);\n" +
-                "var action = brain.forward(state);\n" +
-                "\n" +
-                "draw_net();\n" +
-                "draw_stats();\n" +
-                "\n" +
-                "return action;\n" +
-                "}\n" +
-                "\n" +
-                "//]]>\n"
-            TrainData+="if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
-        }
+            TrainData+= "if (brain) {\nbrain.value_net.fromJSON(" + JSON.stringify(brain.value_net.toJSON()) + ");\n}";
     }
     return TrainData;
 }
@@ -137,6 +68,7 @@ readFile = function (picker) {
                 var reader = new FileReader();
                 reader.readAsText(file, "UTF-8");
                 reader.onload = function (event) {
+
                     TrainData = event.target.result;
                     eval(TrainData);//直接执行文件中的代码
                     //editor.setValue(data.split("\n/*###########*/\n")[0]);
