@@ -147,9 +147,11 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
   // all weights, and also stores all gradients w.r.t. 
   // the data. c is optionally a value to initialize the volume
   // with. If c is missing, fills the Vol with random numbers.
+
+  //定义Vol类
   var Vol = function(sx, sy, depth, c) {
     // this is how you check if a variable is an array. Oh, Javascript :)
-    if(Object.prototype.toString.call(sx) === '[object Array]') {
+    if(Object.prototype.toString.call(sx) === '[object Array]') {//如果sx是数组类型，则把sx,sy,depth设为1
       // we were given a list in sx, assume 1D volume and fill it up
       this.sx = 1;
       this.sy = 1;
@@ -161,12 +163,12 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
       for(var i=0;i<this.depth;i++) {
         this.w[i] = sx[i];
       }
-    } else {
+    } else {//如果sx不是一个数组，则获取传进来的参数sx,sy,depth
       // we were given dimensions of the vol
       this.sx = sx;
       this.sy = sy;
       this.depth = depth;
-      var n = sx*sy*depth;
+      var n = sx*sy*depth;//计算vol的大小
       this.w = global.zeros(n);
       this.dw = global.zeros(n);
       if(typeof c === 'undefined') {
@@ -180,7 +182,7 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
       } else {
         for(var i=0;i<n;i++) { 
           this.w[i] = c;
-        }
+        }//初始化值c填充w[]
       }
     }
   }
